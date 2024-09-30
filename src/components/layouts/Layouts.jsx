@@ -9,7 +9,7 @@ const Layouts = () => {
 
   return (
     <div
-      className={`relative h-screen flex flex-col justify-between ease-in-out duration-700 ${
+      className={`relative flex flex-col justify-between ease-in-out duration-700 ${
         showBtn ? "w-[92%] z-50 ease-in-out duration-700" : "w-[80%]"
       }`}
     >

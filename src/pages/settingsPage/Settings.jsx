@@ -32,7 +32,6 @@ const Settings = () => {
         } else {
           toast.error(elements?.message);
         }
-        // console.log(elements);
       });
   };
 
@@ -78,12 +77,9 @@ const Settings = () => {
               <td className="w-[60%] flex gap-4 pt-9">
                 <button className="bg-blue-600 px-3 mx-auto w-[50%] hover:bg-blue-500 ease-out duration-500 rounded-[8px]">
                   <EditSettings
-                    editCategoriya={{
-                      editId: val.id,
-                      editName_en: val.name_en,
-                      editName_ru: val.name_ru,
-                      editImg: val.image_src,
-                    }}
+                    Id={val.id}
+                    editName_en={val.name_en}
+                    editName_ru={val.name_ru}
                     getCategories={getCategories}
                   />
                 </button>

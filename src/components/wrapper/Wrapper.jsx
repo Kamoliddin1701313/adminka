@@ -6,7 +6,7 @@ export const ValueContext = createContext();
 const Wrapper = () => {
   const [showBtn, setShowBtn] = useState(false);
   return (
-    <div className="flex h-screen justify-between w-[1280px] mx-auto">
+    <div className="flex h-[725px] justify-between w-[1280px] mx-auto">
       <ValueContext.Provider value={{ showBtn, setShowBtn }}>
         <Sidebar />
         <Layouts />

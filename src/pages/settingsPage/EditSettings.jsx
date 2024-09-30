@@ -20,21 +20,19 @@ const style = {
   p: 4,
 };
 
-function EditSettings({ getCategories, editCategoriya }) {
+function EditSettings({ getCategories, Id, editName_en, editName_ru }) {
+  const [editId, setEditId] = useState(Id);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
-  const postToken = localStorage.getItem("token");
 
   const [nameEn, setNameEn] = useState();
   const [nameRu, setNameRu] = useState();
   const [file, setFile] = useState();
 
-  const addCategory = (e) => {
+  const editCategory = (e) => {
     e.preventDefault();
-
-    console.log(getCategories.editId, "salom");
-    console.log(getCategories, "salomat");
 
     const editToken = localStorage.getItem("token");
 
@@ -43,16 +41,13 @@ function EditSettings({ getCategories, editCategoriya }) {
     formdata.append("name_ru", nameRu);
     formdata.append("images", file);
 
-    fetch(
-      `https://autoapi.dezinfeksiyatashkent.uz/api/categories/${getCategories.editId}`,
-      {
-        method: "Put",
-        headers: {
-          Authorization: `Bearer ${editToken}`,
-        },
-        body: formdata,
-      }
-    )
+    fetch(`https://autoapi.dezinfeksiyatashkent.uz/api/categories/${editId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${editToken}`,
+      },
+      body: formdata,
+    })
       .then((respons) => respons.json())
       .then((elements) => {
         if (elements.success) {
@@ -68,9 +63,9 @@ function EditSettings({ getCategories, editCategoriya }) {
 
   return (
     <div>
-      <button onClick={handleOpen}>
+      <div onClick={handleOpen}>
         <FaRegEdit className="text-[20px] mt-[5px] text-white" />
-      </button>
+      </div>
 
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
@@ -90,7 +85,7 @@ function EditSettings({ getCategories, editCategoriya }) {
                   <label htmlFor="name_en">name_en</label>
                 </div>
                 <input
-                  defaultValue={editCategoriya.editName_en}
+                  defaultValue={editName_en}
                   onChange={(e) => setNameEn(e.target.value)}
                   type="text"
                   id="name_en"
@@ -104,7 +99,7 @@ function EditSettings({ getCategories, editCategoriya }) {
                   <label htmlFor="name_ru">name_ru</label>
                 </div>
                 <input
-                  defaultValue={editCategoriya.editName_ru}
+                  defaultValue={editName_ru}
                   onChange={(e) => setNameRu(e.target.value)}
                   type="text"
                   id="name_ru"
@@ -119,7 +114,6 @@ function EditSettings({ getCategories, editCategoriya }) {
                     <label htmlFor="file">Upload Image</label>
                   </div>
                   <input
-                    // defaultValue={editCategoriya.editImg}
                     onChange={(e) => setFile(e.target.files[0])}
                     type="file"
                     id="file"
@@ -134,7 +128,7 @@ function EditSettings({ getCategories, editCategoriya }) {
                     Cansel
                   </button>
                   <button
-                    onClick={addCategory}
+                    onClick={editCategory}
                     className="bg-blue-700 text-white px-3 py-1 rounded-[8px]"
                   >
                     OK
