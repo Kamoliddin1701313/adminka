@@ -10,10 +10,9 @@ const Login = () => {
 
   const registration = (event) => {
     event.preventDefault();
-    console.log(phone, parol);
 
     fetch("https://autoapi.dezinfeksiyatashkent.uz/api/auth/signin", {
-      method: "Post",
+      method: "POST",
       headers: {
         "Content-type": "application/json",
       },
@@ -37,27 +36,27 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    // registration();
-  }, []);
+  // useEffect(() => {
+  //   // registration();
+  // }, []);
 
   return (
     <div className="max-w-[1280px] mx-auto h-screen flex items-center justify-center">
-      <form className="w-3/5 mx-auto bg-gray-200 h-[60vh] rounded-[30px] flex gap-3 flex-col items-center justify-center">
+      <form className="w-1/2 mx-auto bg-gray-200 h-[60vh] rounded-[30px] flex gap-3 flex-col items-center justify-center">
         <h1 className="text-[36px] text-green-600 font-semibold">Login in</h1>
         <input
           onChange={(e) => setPhone(e.target.value)}
           className="w-3/4 py-3 rounded-[12px] px-5 border-[1px] border-green-600 outline-none"
           type="text"
           required
-          placeholder="Phone-number"
+          placeholder="Phone-number ..."
         />
         <input
           onChange={(e) => setParol(e.target.value)}
           className="w-3/4 py-3 rounded-[12px] px-5 border-[1px] border-green-600 outline-none"
           type="text"
           required
-          placeholder="Parol"
+          placeholder="Parol ..."
         />
         <button
           type="submit"
@@ -67,6 +66,7 @@ const Login = () => {
           Login qilish
         </button>
       </form>
+
       <ToastContainer />
     </div>
   );

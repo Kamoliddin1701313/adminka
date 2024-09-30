@@ -1,16 +1,28 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Wrapper from "./components/wrapper/Wrapper";
-import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
-import Brands from "./pages/Brands";
-import Models from "./pages/Models";
-import Locations from "./pages/Locations";
-import Cities from "./pages/Cities";
-import Cars from "./pages/Cars";
+import Dashboard from "./pages/dashboardPage/Dashboard";
+import Settings from "./pages/settingsPage/Settings";
+import Brands from "./pages/brandsPage/Brands";
+import Models from "./pages/modelsPage/Models";
+import Locations from "./pages/locationsPage/Locations";
+import Cities from "./pages/citiesPage/Cities";
+import Cars from "./pages/carsPage/Cars";
 import Login from "./components/login/Login";
+import { useEffect } from "react";
+
+// ?.includes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey")
 
 function App() {
+  const navigatepage = useNavigate();
+  const tokenpage = localStorage.getItem("token");
+  useEffect(() => {
+    if (tokenpage) {
+      navigatepage("/dashboard");
+    } else {
+      navigatepage("/");
+    }
+  }, []);
   return (
     <div>
       <Routes>
